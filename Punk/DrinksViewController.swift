@@ -148,20 +148,20 @@ private extension DrinksViewController {
         refreshControl.addTarget(self, action: #selector(refreshBeers), for: .valueChanged)
         tableView.refreshControl = refreshControl
         
-        errorLabel.text = "Something went wrong";
+        errorLabel.text = NSLocalizedString("general_error", comment: "")
         errorLabel.backgroundColor = UIColor.init(white: 0.9, alpha: 1.0)
         errorLabel.textColor = UIColor.darkGray
-        errorLabel.font = UIFont.systemFont(ofSize: 14)
+        errorLabel.font = UIFont.systemFont(ofSize: 13)
         errorLabel.textAlignment = .center
         errorLabel.numberOfLines = 0
         errorLabel.translatesAutoresizingMaskIntoConstraints = false
         errorLabel.layer.cornerRadius = 10
         view.addSubview(errorLabel)
         NSLayoutConstraint.activate([
-            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            errorLabel.heightAnchor.constraint(equalToConstant: 32),
-            errorLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 32)
+            errorLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            errorLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            errorLabel.heightAnchor.constraint(equalToConstant: 30),
+            errorLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 30)
         ])
 
         viewModel.onUpdate = { [weak self] in

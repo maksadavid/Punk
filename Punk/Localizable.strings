@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  Punk
+
+  Created by David Maksa on 28.06.22.
+  
+*/
+
+"no_results" = "No results";
+"general_error" = "Something went wrong.";

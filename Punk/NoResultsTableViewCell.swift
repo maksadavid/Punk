@@ -28,8 +28,7 @@ class NoResultsTableViewCell: UITableViewCell {
 private extension NoResultsTableViewCell {
     
     func setupViews() {
-        // TODO: String should be localized
-        noResultsTextLabel.text = "No results"
+        noResultsTextLabel.text = NSLocalizedString("no_results", comment: "")
         noResultsTextLabel.textColor = UIColor.darkGray
         noResultsTextLabel.font = UIFont.systemFont(ofSize: 14)
         noResultsTextLabel.translatesAutoresizingMaskIntoConstraints = false

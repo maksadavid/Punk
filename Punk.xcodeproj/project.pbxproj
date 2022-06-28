@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB9A59A2286B910F001D4723 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A59A1286B910F001D4723 /* LoadingTableViewCell.swift */; };
 		EB9A59A4286B9CDC001D4723 /* NoResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A59A3286B9CDC001D4723 /* NoResultsTableViewCell.swift */; };
+		EB9A59A6286BB08F001D4723 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB9A59A5286BB08F001D4723 /* Localizable.strings */; };
 		EBC91398286A144C0009DC14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC91397286A144C0009DC14 /* AppDelegate.swift */; };
 		EBC9139C286A144C0009DC14 /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9139B286A144C0009DC14 /* DrinksViewController.swift */; };
 		EBC913A1286A14510009DC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC913A0286A14510009DC14 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		EB9A59A1286B910F001D4723 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EB9A59A3286B9CDC001D4723 /* NoResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultsTableViewCell.swift; sourceTree = "<group>"; };
+		EB9A59A5286BB08F001D4723 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		EBC91394286A144C0009DC14 /* Punk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Punk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC91397286A144C0009DC14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC9139B286A144C0009DC14 /* DrinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				EBC913A0286A14510009DC14 /* Assets.xcassets */,
 				EBC913A2286A14510009DC14 /* LaunchScreen.storyboard */,
 				EBC913A5286A14510009DC14 /* Info.plist */,
+				EB9A59A5286BB08F001D4723 /* Localizable.strings */,
 			);
 			path = Punk;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC913A4286A14510009DC14 /* LaunchScreen.storyboard in Resources */,
+				EB9A59A6286BB08F001D4723 /* Localizable.strings in Resources */,
 				EBC913A1286A14510009DC14 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
