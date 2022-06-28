@@ -22,7 +22,8 @@ class DrinksViewModel {
     private var isFetchingBeers = false
     private (set) var tableViewItems = [TableViewItem.loadingItem]
     var onUpdate: (()->())?
-    
+    var onError: (()->())?
+
     init(punkService: PunkService) {
         self.punkService = punkService
     }
@@ -77,7 +78,7 @@ extension DrinksViewModel {
         }
         isFetchingBeers = false
         print("Failed to fetch beers. \(error.localizedDescription)")
-        onUpdate?()
+        onError?()
     }
     
 }
