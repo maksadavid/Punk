@@ -27,11 +27,13 @@ class DrinksViewController: UIViewController {
         tableView.allowsSelection = false
         tableView.register(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.reuseId)
         tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseId)
+        tableView.register(NoResultsTableViewCell.self, forCellReuseIdentifier: NoResultsTableViewCell.reuseId)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = .none
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -43,11 +45,6 @@ class DrinksViewController: UIViewController {
         tableView.refreshControl = refreshControl
         
         viewModel.onUpdate = { [weak self] in
-            self?.refreshControl.endRefreshing()
-            self?.tableView.reloadData()
-        }
-        
-        viewModel.onError = { [weak self] in
             self?.refreshControl.endRefreshing()
             self?.tableView.reloadData()
         }
@@ -87,6 +84,14 @@ extension DrinksViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.update()
+            return cell
+        case .noResultsItem:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: NoResultsTableViewCell.reuseId,
+                for: indexPath
+            ) as? NoResultsTableViewCell else {
+                return UITableViewCell()
+            }
             return cell
         }
     }

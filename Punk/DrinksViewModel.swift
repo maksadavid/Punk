@@ -13,6 +13,7 @@ class DrinksViewModel {
     enum TableViewItem: Equatable {
         case beer(Beer)
         case loadingItem
+        case noResultsItem
     }
     
     private let punkService: PunkService
@@ -21,7 +22,6 @@ class DrinksViewModel {
     private var isFetchingBeers = false
     private (set) var tableViewItems = [TableViewItem.loadingItem]
     var onUpdate: (()->())?
-    var onError: (()->())?
     
     init(punkService: PunkService) {
         self.punkService = punkService
@@ -35,16 +35,9 @@ class DrinksViewModel {
                 let beers = try await punkService.fetchBeers(page: currentPage, pageSize: pageSize)
                 tableViewItems = tableViewItems.filter { $0 != .loadingItem }
                 tableViewItems.append(contentsOf: beers.map { TableViewItem.beer($0) })
-                if beers.count >= pageSize {
-                    tableViewItems.append(.loadingItem)
-                }
-                currentPage += 1
-                isFetchingBeers = false
-                onUpdate?()
+                handleBeerFetchingSuccess(canFetchMore: beers.count >= pageSize)
             } catch let error {
-                isFetchingBeers = false
-                print("Failed to fetch more beers. \(error.localizedDescription)")
-                onError?()
+                handleBeerFetchingError(error)
             }
         }
     }
@@ -57,17 +50,34 @@ class DrinksViewModel {
                 currentPage = 0
                 let beers = try await punkService.fetchBeers(page: currentPage, pageSize: pageSize)
                 tableViewItems = beers.map { TableViewItem.beer($0) }
-                if beers.count >= pageSize {
-                    tableViewItems.append(.loadingItem)
-                }
-                currentPage += 1
-                isFetchingBeers = false
-                onUpdate?()
+                handleBeerFetchingSuccess(canFetchMore: beers.count >= pageSize)
             } catch let error {
-                isFetchingBeers = false
-                print("Failed to refresh beers. \(error.localizedDescription)")
-                onError?()
+                handleBeerFetchingError(error)
             }
         }
     }
+}
+
+// MARK: - Private
+
+extension DrinksViewModel {
+    
+    func handleBeerFetchingSuccess(canFetchMore: Bool) {
+        if canFetchMore {
+            tableViewItems.append(.loadingItem)
+        }
+        currentPage += 1
+        isFetchingBeers = false
+        onUpdate?()
+    }
+    
+    func handleBeerFetchingError(_ error: Error) {
+        if tableViewItems.count == 1 && tableViewItems.first == .loadingItem {
+            tableViewItems = [.noResultsItem]
+        }
+        isFetchingBeers = false
+        print("Failed to fetch beers. \(error.localizedDescription)")
+        onUpdate?()
+    }
+    
 }

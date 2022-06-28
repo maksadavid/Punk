@@ -32,6 +32,8 @@ class LoadingTableViewCell: UITableViewCell {
     
 }
 
+// MARK: - Private
+
 private extension LoadingTableViewCell {
     
     func setupViews() {
