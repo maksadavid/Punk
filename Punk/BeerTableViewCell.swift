@@ -27,6 +27,11 @@ class BeerTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        beerImageView.kf.cancelDownloadTask()
+    }
+    
     func update(with beer: Beer) {
         if let url = URL(string: beer.imageUrl) {
             beerImageView.kf.setImage(

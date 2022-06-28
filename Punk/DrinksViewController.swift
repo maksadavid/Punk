@@ -24,10 +24,11 @@ class DrinksViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.allowsSelection = false
         tableView.register(BeerTableViewCell.self, forCellReuseIdentifier: BeerTableViewCell.reuseId)
+        tableView.register(LoadingTableViewCell.self, forCellReuseIdentifier: LoadingTableViewCell.reuseId)
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,18 +39,24 @@ class DrinksViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        refreshControl.addTarget(self, action: #selector(refreshBeers), for: .valueChanged)
+        tableView.refreshControl = refreshControl
         
-        Task {
-            do {
-                try await viewModel.fetchBeers()
-                tableView.reloadData()
-            } catch let error {
-                print("Failed to fetch beers. \(error.localizedDescription)")
-            }
+        viewModel.onUpdate = { [weak self] in
+            self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
         }
         
+        viewModel.onError = { [weak self] in
+            self?.refreshControl.endRefreshing()
+            self?.tableView.reloadData()
+        }
     }
-
+    
+    @objc func refreshBeers() {
+        viewModel.refreshBeers()
+    }
+    
 }
 
 // MARK: - UITableViewDataSource
@@ -72,10 +79,27 @@ extension DrinksViewController: UITableViewDataSource {
             }
             cell.update(with: beer)
             return cell
-        case .loading:
-            return UITableViewCell()
+        case .loadingItem:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: LoadingTableViewCell.reuseId,
+                for: indexPath
+            ) as? LoadingTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.update()
+            return cell
         }
     }
     
 }
 
+// MARK: - UITableViewDelegate
+
+extension DrinksViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if viewModel.tableViewItems[indexPath.item] == .loadingItem {
+            viewModel.fetchMoreBeers()
+        }
+    }
+}

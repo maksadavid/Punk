@@ -15,9 +15,8 @@ class PunkService {
     }
     
     private let baseUrlString = "https://api.punkapi.com"
-    private let pageSize = 20
     
-    func fetchBeers(page: Int) async throws -> [Beer] {
+    func fetchBeers(page: Int, pageSize: Int) async throws -> [Beer] {
         var urlComponents = URLComponents(string: baseUrlString)
         urlComponents?.path = "/v2/beers"
         var queryItems = [URLQueryItem(name: "per_page", value: String(pageSize))]
@@ -29,6 +28,7 @@ class PunkService {
             throw APIError.failedToBuildUrl
         }
         let (data, response) = try await URLSession.shared.data(from: url)
+        try Task.checkCancellation()
         guard let response = response as? HTTPURLResponse,
               (200...299).contains(response.statusCode) else {
             throw APIError.responseStatusError

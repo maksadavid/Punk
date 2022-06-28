@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Beer: Codable {
+struct Beer: Codable, Equatable {
     let id: Int
     let name: String
     let tagline: String
@@ -21,5 +21,4 @@ struct Beer: Codable {
         case description = "description"
         case imageUrl = "image_url"
     }
-
 }

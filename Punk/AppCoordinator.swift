@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 class AppCoordinator {
     
     private let punkService = PunkService()

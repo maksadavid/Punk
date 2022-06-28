@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB9A59A2286B910F001D4723 /* LoadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9A59A1286B910F001D4723 /* LoadingTableViewCell.swift */; };
 		EBC91398286A144C0009DC14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC91397286A144C0009DC14 /* AppDelegate.swift */; };
 		EBC9139C286A144C0009DC14 /* DrinksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC9139B286A144C0009DC14 /* DrinksViewController.swift */; };
 		EBC913A1286A14510009DC14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBC913A0286A14510009DC14 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB9A59A1286B910F001D4723 /* LoadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTableViewCell.swift; sourceTree = "<group>"; };
 		EBC91394286A144C0009DC14 /* Punk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Punk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBC91397286A144C0009DC14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EBC9139B286A144C0009DC14 /* DrinksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				EBC913C9286A175C0009DC14 /* PunkService.swift */,
 				EBC913CB286A186F0009DC14 /* Beer.swift */,
 				EBC913CD286A1B940009DC14 /* BeerTableViewCell.swift */,
+				EB9A59A1286B910F001D4723 /* LoadingTableViewCell.swift */,
 				EBC913A0286A14510009DC14 /* Assets.xcassets */,
 				EBC913A2286A14510009DC14 /* LaunchScreen.storyboard */,
 				EBC913A5286A14510009DC14 /* Info.plist */,
@@ -280,6 +283,7 @@
 				EBC913CC286A186F0009DC14 /* Beer.swift in Sources */,
 				EBC913C8286A14FD0009DC14 /* DrinksViewModel.swift in Sources */,
 				EBC913CA286A175C0009DC14 /* PunkService.swift in Sources */,
+				EB9A59A2286B910F001D4723 /* LoadingTableViewCell.swift in Sources */,
 				EBC913D0286A21650009DC14 /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
