@@ -33,12 +33,15 @@ class BeerTableViewCell: UITableViewCell {
     }
     
     func update(with beer: Beer) {
-        if let url = URL(string: beer.imageUrl) {
+        if let urlString = beer.imageUrl,
+            let url = URL(string: urlString) {
             beerImageView.kf.setImage(
                 with: url,
             options: [
                 .transition(.fade(0.25))
             ])
+        } else {
+            beerImageView.image = nil
         }
         nameLabel.text = beer.name
         taglineLabel.text = beer.tagline

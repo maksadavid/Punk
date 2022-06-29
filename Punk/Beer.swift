@@ -12,7 +12,7 @@ struct Beer: Codable, Equatable {
     let name: String
     let tagline: String
     let description: String
-    let imageUrl: String
+    let imageUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "id"
